@@ -39,3 +39,6 @@ if resposta == respostaCerta:
     print("Correcta")
 else:
     print("Errada")
+
+
+#este e outro teste!
