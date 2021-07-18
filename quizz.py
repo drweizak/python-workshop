@@ -1,41 +1,71 @@
 # Quizz
 # Uma pergunta com várias opções onde normalmente apenas 1 é verdadeira
 # -- O que pode ser melhorado?
-# Várias Perguntas
 # Inserir Perguntas
-# Listas de respostas
-# Funções de verificação
 # Validação
 # Perguntas  / Respostas aleatórias (Dicionario)
-# Pontuação
-# Nome utilizador, data, score
+# Pontuação / score
+# Nome utilizador, data
+# Menu Principal Jogo
+# Separar em mais funcoes
 
+# Tipo Text: 	    str
+# Tipo Numerico: 	int, float, complex
+# Tipo Sequencial: 	list, tuple, range
+# Tipo Mapa: 	    dict
+# Tipo Conjunto: 	set, frozenset
+# Tipo Boleano: 	bool
+# Tipo Binario: 	bytes, bytearray, memoryview
+
+# lista = ["Ola",2, None] # lista com ordem indexada 1, 2, 3...
+# dicionario = { "chave":"valor", 1:"valor", 2: None } # dicionario com "keys" (chave)
+# tuplo = (1,2,3,"ada") # tuplo ordenado/indexado e não se pode alterar o valor
+
+import sys
 import time
 
-pergunta1 = "Qual das palavras não pertence à família da Arvore?"
+pergunta1 = ["Qual das palavras não pertence à família da Arvore?", ["Computador", "Folha", "Tronco", "Ramos", "Raiz"], 0 ]
+pergunta2 = ["Em que anos se deu a união dinástica?", ["1780-1820", "1580-1640", "1290-1311", "1555-1580", "1467-1509"], 1 ]
 
-a="a. computador"
-b="b. folha"
-c="c. tronco"
-d="d. ramos"
-e="e. raiz"
+perguntas = [pergunta1,pergunta2]
 
-print(pergunta1)
-print(a)
-print(b)
-print(c)
-print(d)
-print(e)
+def fazerPergunta (pergunta):
+    print(pergunta[0])
+    # loop 1
+    # 3 plicas comenta em bloco
+    ''' 
+    x = 1
+    for i in pergunta[1]:
+        print(str(x) + ". " + i)
+        x += 1
 
-respostaCerta = "a"
+    '''
+    # loop 2
+    opcoes = pergunta[1]
 
-resposta = input("Resposta:")
+    for i in range(len(pergunta[1])):
+        opcao = pergunta[1][i]
+        print(str(i+1) + ". " + opcao)
+        
+    resposta = input("Resposta: ")
+    print("A tua resposta está")
+    # suspense
+    time.sleep(0.5) # delay de 2 seg.
+    print(".")
+    time.sleep(0.5) # delay de 2 seg.
+    print(".")
+    time.sleep(0.5) # delay de 2 seg.
+    print(".")
+    time.sleep(0.5) # delay de 2 seg.
 
-print("A tua resposta está... ")
+    if int(resposta)-1 == pergunta[2]:
+        print("Correcta")
+    else:
+        print("Errada")
 
-time.sleep(2) # delay de 2 seg.
+for pergunta in perguntas:
+    fazerPergunta(pergunta)
+    print("\n")
+    time.sleep(1) # delay de 1 seg.
 
-if resposta == respostaCerta:
-    print("Correcta")
-else:
-    print("Errada")
+print("Quizz concluido")
