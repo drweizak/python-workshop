@@ -16,7 +16,7 @@
 	Se o resultado apresentar a versao atual do Git, a instalacao foi feita com sucesso.
 3. Configurar o git
 	Abrir a linha de comandos/Terminal e correr o seguinte comando:
-		git config --global user.name "John Doe",
+		git config --global user.name "John Doe"
 		git config --global user.email johndoe@example.com
 	Deve de substiuir pelo seu nome e email, de preferencia, o mesmo email que usou para criar conta no Github
 
