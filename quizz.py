@@ -3,9 +3,18 @@
 # -- O que pode ser melhorado:
 # Inserir Perguntas
 # Menu Principal Jogo / GUI
+# Modos de jogo (Single Player, Multi-jogador)
 
-# Separar em mais funcoes
-# criar base de dados
+import time
+import random
+import json
+from datetime import datetime
+
+class questao:
+    def __init__(self, titulo, respostas, verifica):
+        self.titulo = titulo
+        self.respostas = respostas
+        self.verifica = verifica
 
 def login():
     global nome_utilizador
@@ -13,7 +22,6 @@ def login():
 
 def imprimirRespostas(respostas):
     random.shuffle(respostas)
-
 
     for i in range(len(respostas)):
         opcao = respostas[i]
@@ -34,7 +42,6 @@ def lerResposta():
             print("\n")
 
     return resposta
-
 
 def validarResposta(pergunta, resposta):
     global pontuacao, respostas_corretas
@@ -71,7 +78,6 @@ def fazerPergunta (pergunta):
     resposta = lerResposta()
     print("\n")
 
-
     validarResposta(pergunta, resposta)
 
 def gerarPerguntas():
@@ -107,7 +113,6 @@ def avaliarPontuacao():
     else:
         print(nome_utilizador, ', Brutal, acertaste em tudo. Se es assim tao bom nisto, porque nao nos ajudas a programar este Quiz?')
 
-
 def guardarRegisto():
     # Ler Json
     with open("utilizadores.json", "r") as ficheiro:
@@ -130,7 +135,6 @@ def guardarRegisto():
 
 def iniciarQuiz():
     login()
-
     print("\n")
 
     for pergunta in perguntas:
@@ -150,12 +154,9 @@ def iniciarQuiz():
     print("Quizz concluido!")
 
 total_perguntas = 1
-
 respostas_corretas = 0
 pontuacao = 0
 perguntas = gerarPerguntas()
 nome_utilizador = ''
 
-
 iniciarQuiz()
-
