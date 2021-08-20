@@ -1,68 +1,146 @@
 [
-        {
-            "id": 1,
-            "questao": "Qual das palavras não pertence à família da Arvore?",
-            "opcoes": ["Computador", "Folha", "Tronco", "Ramos", "Raiz"],
-            "respostaCerta": "Computador"
-        },
-        {
-            "id": 2,
-            "questao": "Em que anos se deu a união dinástica ibérica?",
-            "opcoes": ["1780-1820", "1580-1640", "1290-1311", "1555-1580", "1467-1509"], 
-            "respostaCerta": "1580-1640"
-        },
-        {
-            "id": 3,
-            "questao": "Em que ano sucedeu o atentado terrorista de 11 de Setembro?",
-            "opcoes": ["2021", "1876", "2002", "3001", "2001"],
-            "respostaCerta": "2001"
-        }, 
-        {
-            "id": 4,
-            "questao": "Quando é que o tiranossauro Rex extinguiu-se?",
-            "opcoes": ["1990", "66,000,000 AC", "2021", "20,000,000 AC", "10,000 AC"],
-            "respostaCerta": "66,000,000 AC"
-        }, 
-        {
-            "id": 5,
-            "questao": "Qual é a escala que mede a intensidade de um sismo?",
-            "opcoes": ["Richter", "Mercalli Modificada", "Magnitude local", "Magnitude de momento", "Terramoto"],
-            "respostaCerta": "Mercalli Modificada"
-        },
-        {
-            "id": 6,
-            "questao": "Qual é o nome que se dá ao ponto de não retorno de um buraco-negro?",
-            "opcoes":["Disco de Acreção", "Horizonte de Eventos", "Infinito", "Heliosfera", "Galáxia"],
-            "respostaCerta": "Horizonte de Eventos"
-        },
-        {
-            "id": 7,
-            "questao": "Qual o livro mais vendido no mundo a seguir à Bíblia?",
-            "opcoes":  ["Senhor dos Anéis", "Dom Quixote", "O Pequeno Príncipe", "Ela a Feiticeira", "Um conto de duas cidades"], 
-            "respostaCerta": "Dom Quixote"
-        },
-        {
-             "id": 8,
-             "questao": "Qual destes países não é na Europa?",
-             "opcoes": ["Portugal","Finlândia","Alemanha","Burkina Faso", "Suíça"], 
-             "respostaCerta": "Burkina Faso"
-        },
-        {
-            "id": 9,
-            "questao": "Qual foi o primeiro jogo publicado pela Titan Forged Games",
-            "opcoes":  ["League of Legends", "Slinki", "SMITE", "Out of Line", "Ugo Volt"], 
-            "respostaCerta": "Slinki"
-        },
-        {
-            "id": 10,
-            "questao": "Qual é o código do multibanco da Verónica?",
-            "opcoes": ["6743", "0000", "5643", "2021", "XXXX"], 
-            "respostaCerta": "XXXX"
-        },
-        {
-            "id": 11,
-            "questao": "Qual é unidade de temperatura de acordo com o SI (Sistema Internacional)?",
-            "opcoes": ["Kelvin", "Celsius", "Centigrados", "Fahrenheit", "Kevin"],
-            "respostaCerta": "Kelvin"
-        } 
+    {
+        "questao": "Qual das palavras n\u00e3o pertence \u00e0 fam\u00edlia da Arvore?",
+        "respostaCerta": "Computador",
+        "opcoes": [
+            "Computador",
+            "Folha",
+            "Tronco",
+            "Ramos",
+            "Raiz"
+        ],
+        "id": 1
+    },
+    {
+        "questao": "Em que anos se deu a uni\u00e3o din\u00e1stica ib\u00e9rica?",
+        "respostaCerta": "1580-1640",
+        "opcoes": [
+            "1780-1820",
+            "1580-1640",
+            "1290-1311",
+            "1555-1580",
+            "1467-1509"
+        ],
+        "id": 2
+    },
+    {
+        "questao": "Em que ano sucedeu o atentado terrorista de 11 de Setembro?",
+        "respostaCerta": "2001",
+        "opcoes": [
+            "2021",
+            "1876",
+            "2002",
+            "3001",
+            "2001"
+        ],
+        "id": 3
+    },
+    {
+        "questao": "Quando \u00e9 que o tiranossauro Rex extinguiu-se?",
+        "respostaCerta": "66,000,000 AC",
+        "opcoes": [
+            "1990",
+            "66,000,000 AC",
+            "2021",
+            "20,000,000 AC",
+            "10,000 AC"
+        ],
+        "id": 4
+    },
+    {
+        "questao": "Qual \u00e9 a escala que mede a intensidade de um sismo?",
+        "respostaCerta": "Mercalli Modificada",
+        "opcoes": [
+            "Richter",
+            "Mercalli Modificada",
+            "Magnitude local",
+            "Magnitude de momento",
+            "Terramoto"
+        ],
+        "id": 5
+    },
+    {
+        "questao": "Qual \u00e9 o nome que se d\u00e1 ao ponto de n\u00e3o retorno de um buraco-negro?",
+        "respostaCerta": "Horizonte de Eventos",
+        "opcoes": [
+            "Disco de Acre\u00e7\u00e3o",
+            "Horizonte de Eventos",
+            "Infinito",
+            "Heliosfera",
+            "Gal\u00e1xia"
+        ],
+        "id": 6
+    },
+    {
+        "questao": "Qual o livro mais vendido no mundo a seguir \u00e0 B\u00edblia?",
+        "respostaCerta": "Dom Quixote",
+        "opcoes": [
+            "Senhor dos An\u00e9is",
+            "Dom Quixote",
+            "O Pequeno Pr\u00edncipe",
+            "Ela a Feiticeira",
+            "Um conto de duas cidades"
+        ],
+        "id": 7
+    },
+    {
+        "questao": "Qual destes pa\u00edses n\u00e3o \u00e9 na Europa?",
+        "respostaCerta": "Burkina Faso",
+        "opcoes": [
+            "Portugal",
+            "Finl\u00e2ndia",
+            "Alemanha",
+            "Burkina Faso",
+            "Su\u00ed\u00e7a"
+        ],
+        "id": 8
+    },
+    {
+        "questao": "Qual foi o primeiro jogo publicado pela Titan Forged Games",
+        "respostaCerta": "Slinki",
+        "opcoes": [
+            "League of Legends",
+            "Slinki",
+            "SMITE",
+            "Out of Line",
+            "Ugo Volt"
+        ],
+        "id": 9
+    },
+    {
+        "questao": "Qual \u00e9 o c\u00f3digo do multibanco da Ver\u00f3nica?",
+        "respostaCerta": "XXXX",
+        "opcoes": [
+            "6743",
+            "0000",
+            "5643",
+            "2021",
+            "XXXX"
+        ],
+        "id": 10
+    },
+    {
+        "questao": "Qual \u00e9 unidade de temperatura de acordo com o SI (Sistema Internacional)?",
+        "respostaCerta": "Kelvin",
+        "opcoes": [
+            "Kelvin",
+            "Celsius",
+            "Centigrados",
+            "Fahrenheit",
+            "Kevin"
+        ],
+        "id": 11
+    },
+    {
+        "questao": "Qual \u00e9 o ano da independ\u00eancia da Finl\u00e2ndia ?",
+        "respostaCerta": "1917",
+        "opcoes": [
+            "1917",
+            "1234",
+            "1902",
+            "3021",
+            "1813"
+        ],
+        "id": 12
+    }
 ]
