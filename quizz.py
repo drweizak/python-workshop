@@ -1,9 +1,12 @@
 # Quizz
 # Uma pergunta com várias opções onde normalmente apenas 1 é verdadeira
 # -- O que pode ser melhorado:
-# Inserir Perguntas
+# Inserir Perguntas (FEITO) 
 # Menu Principal Jogo / GUI
 # Modos de jogo (Single Player, Multi-jogador)
+# estatisticas e graficos de pontuaçao
+# Inserir opção de confirmar/editar na funcao inserirPergunta
+# Inserir funcao inserirPergunta nos menus de jogo
 
 import time
 import random
@@ -158,11 +161,39 @@ def iniciarQuiz():
 
     print("Quizz concluido!")
 
+def inserirPergunta() :
+    nova_pergunta=input('Insira a sua pergunta: ')
+    resp_corr=input('Insira a resposta correcta: ')
+    resp1=input('Insira resposta 1: ')
+    resp2=input('Insira resposta 2: ')
+    resp3=input('Insira resposta 3: ')
+    resp4=input('Insira resposta 4: ')
+    lista_resp = [resp_corr, resp1, resp2, resp3, resp4]
+
+    # Ler Json
+    with open("perguntas.json", "r") as ficheiro :
+        perguntas =json.loads(ficheiro.read())
+    #if nome_utilizador in utilizadores:
+    #try utilizadores[nome_utilizador]:
+
+    id = perguntas[-1]['id']+1
+    
+    nova_pergunta = {
+        "id": id,
+        "questao": nova_pergunta,
+        "opcoes": lista_resp,
+        "respostaCerta": resp_corr
+    }
+    perguntas.append(nova_pergunta)
+    perguntas = json.dumps(perguntas, indent=4)
+    with open("perguntas.json", "w") as ficheiro:
+        ficheiro.write(perguntas)
+
 total_perguntas = 1
 respostas_corretas = 0
 pontuacao = 0
 perguntas = gerarPerguntas()
 nome_utilizador = ''
 
-
 iniciarQuiz()
+#inserirPergunta()
