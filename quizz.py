@@ -1,7 +1,7 @@
 # Quizz
 # Uma pergunta com várias opções onde normalmente apenas 1 é verdadeira
 # -- O que pode ser melhorado:
-# Inserir Perguntas (FEITO)
+# Inserir Perguntas (FEITO) 
 # Menu Principal Jogo / GUI
 # Modos de jogo (Single Player, Multi-jogador)
 # estatisticas e graficos de pontuaçao
