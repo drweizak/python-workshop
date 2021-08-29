@@ -175,7 +175,7 @@ def inserirPergunta() :
         perguntas =json.loads(ficheiro.read())
     #if nome_utilizador in utilizadores:
     #try utilizadores[nome_utilizador]:
-
+    # comment 1
     id = perguntas[-1]['id']+1
     
     nova_pergunta = {
