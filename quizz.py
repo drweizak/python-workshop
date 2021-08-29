@@ -1,7 +1,6 @@
 # Quizz
 # Uma pergunta com várias opções onde normalmente apenas 1 é verdadeira
 # -- O que pode ser melhorado:
-# Inserir Perguntas (FEITO) 
 # Menu Principal Jogo / GUI
 # Modos de jogo (Single Player, Multi-jogador)
 # estatisticas e graficos de pontuaçao
@@ -175,7 +174,6 @@ def inserirPergunta() :
         perguntas =json.loads(ficheiro.read())
     #if nome_utilizador in utilizadores:
     #try utilizadores[nome_utilizador]:
-    # comment 1
     id = perguntas[-1]['id']+1
     
     nova_pergunta = {
@@ -189,11 +187,11 @@ def inserirPergunta() :
     with open("perguntas.json", "w") as ficheiro:
         ficheiro.write(perguntas)
 
-total_perguntas = 1
+total_perguntas = 5
 respostas_corretas = 0
 pontuacao = 0
 perguntas = gerarPerguntas()
 nome_utilizador = ''
 
-iniciarQuiz()
-#inserirPergunta()
+# iniciarQuiz()
+inserirPergunta()

@@ -142,5 +142,17 @@
             "1812"
         ],
         "id": 12
+    },
+    {
+        "id": 13,
+        "questao": "Quem \u00e9 a estrela principal do filme Terminator?",
+        "opcoes": [
+            "Arnold Schwarzenegger",
+            "Harnold Schwarzegger",
+            "Arnol Schwarzegger",
+            "Ronaldo Schwarzenegger",
+            "Arhold Schwerzedder"
+        ],
+        "respostaCerta": "Arnold Schwarzenegger"
     }
 ]
