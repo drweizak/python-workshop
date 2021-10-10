@@ -8,9 +8,8 @@ class Jogar():
     def __init__(self, jogo):
         self.jogo = jogo
 
-        self.construir()
-
-    def construir(self):
+    def construir(self, jogo):
+        self.jogo = jogo
         # Definir variaveis
         cor_azul_cueca = (153, 204, 255)
         cor_vermelho_cueca = (203, 66, 84)
@@ -47,4 +46,4 @@ class Jogar():
                 # print(textoButaoJogar.get_width())
 
                 if x >= centro_ecra[0] - textoButaoJogar.get_width()/2 and x <= centro_ecra[0] + textoButaoJogar.get_width()/2 and y >= 300 and y <= 340:
-                    self.jogo.estado = self.jogo.ecras["menu"]
+                    self.jogo.estado = self.jogo.ecras["menu"](self.jogo)

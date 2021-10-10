@@ -10,9 +10,8 @@ class Menu():
     def __init__(self, jogo):
         self.jogo = jogo
 
-        self.construir()
-
-    def construir(self):
+    def construir(self, jogo):
+        self.jogo = jogo
         # Definir variaveis
         cor_cinzento_cueca = (246, 246, 246)
         cor_azul_cueca = (153, 204, 255)
@@ -90,12 +89,12 @@ class Menu():
         pygame_widgets.update(self.jogo.eventos)
 
     def navegarJogar(self):
-        self.jogo.estado = self.jogo.ecras["jogar"]
+        self.jogo.estado = self.jogo.ecras["jogar"](self.jogo)
 
     def navegarPerguntas(self):
-        self.jogo.estado = self.jogo.ecras["perguntas"]
+        self.jogo.estado = self.jogo.ecras["perguntas"](self.jogo)
 
     def navegarPontuacoes(self):
-        self.jogo.estado = self.jogo.ecras["pontuacoes"]
+        self.jogo.estado = self.jogo.ecras["pontuacoes"](self.jogo)
 
 
