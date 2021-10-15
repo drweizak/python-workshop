@@ -1,4 +1,4 @@
-# Workshop de Python
+# Quizz [Advanced Workshop]
 
 ## Pre-requisitos
 
