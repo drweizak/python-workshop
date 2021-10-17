@@ -193,5 +193,5 @@ pontuacao = 0
 perguntas = gerarPerguntas()
 nome_utilizador = ''
 
-# iniciarQuiz()
-inserirPergunta()
+iniciarQuiz()
+# inserirPergunta()

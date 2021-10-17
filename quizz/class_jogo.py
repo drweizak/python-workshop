@@ -19,7 +19,7 @@ class Jogo:
         "pontuacoes": Menu,
         "nivelJogo": Menu,
     }
-    nome_utilizador = ''
+    nome_utilizador = None
 
     def __init__(self):
         pygame.font.init()

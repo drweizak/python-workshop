@@ -1,49 +1,39 @@
 import pygame
-
+from .quizz import gerarPerguntas
 
 class Jogar():
 
     jogo = None
+    total_perguntas = 5
+    respostas_corretas = 0
+    pontuacao = 0
+    perguntas = []
+    posicao_pergunta = 0
+    initial_render = True
 
     def __init__(self, jogo):
         self.jogo = jogo
+        
+        # Definir cores
+        self.cor_cinzento_cueca = (246, 246, 246)
+        self.cor_azul_cueca = (153, 204, 255)
+        self.cor_azul_escuro_cueca = (184, 196, 209)
+        self.cor_vermelho_cueca = (203, 66, 84)
+        self.cor_verde_cueca = (69, 132, 69)
+        self.preto_cueca = (0, 0, 0)
+        
 
     def construir(self, jogo):
         self.jogo = jogo
-        # Definir variaveis
-        cor_azul_cueca = (153, 204, 255)
-        cor_vermelho_cueca = (203, 66, 84)
-        preto_cueca = (0, 0, 0)
 
-        titulo_fonte = pygame.font.SysFont(
-            "arial", 80, bold=True, italic=False)
-        menu_fonte = pygame.font.SysFont("arial", 40, bold=True, italic=False)
-
-        # Definir cor de fundo
-        self.jogo.ecra.fill(cor_azul_cueca)
-
-        # Definir texto
-        textoTitulo = titulo_fonte.render("Yey!", True, cor_vermelho_cueca)
-        textoButaoJogar = menu_fonte.render("Voltar", True, preto_cueca)
-
-        # Obter Centro do ecra
-        centro_ecra = self.jogo.ecra.get_rect().center
-
-        # Inserir text
-        self.jogo.ecra.blit(
-            textoTitulo, (textoTitulo.get_rect(center=centro_ecra)[0], 150))
-        self.jogo.ecra.blit(textoButaoJogar,
-                            (textoButaoJogar.get_rect(center=centro_ecra)[0], 300))
-
-        # pygame.draw.rect(display, (255, 0, 0), (100, 100, 100, 100))
-
-        # Ler todos os evento
-
-        for evento in self.jogo.eventos:
-            if evento.type == pygame.MOUSEBUTTONDOWN and evento.button == 1:
-                x, y = pygame.mouse.get_pos()
-                # var = textoButaoJogar.collidepoint(pygame.mouse.get_pos())
-                # print(textoButaoJogar.get_width())
-
-                if x >= centro_ecra[0] - textoButaoJogar.get_width()/2 and x <= centro_ecra[0] + textoButaoJogar.get_width()/2 and y >= 300 and y <= 340:
-                    self.jogo.estado = self.jogo.ecras["menu"](self.jogo)
+        if self.initial_render:
+            self.perguntas = gerarPerguntas(self.total_perguntas)
+            self.initial_render = False
+            print(self.perguntas)
+            #Mudar para True quando volta ao menu!!!!
+        
+        self.fazerPergunta(self.perguntas[self.posicao_pergunta])
+        self.jogo.ecra.fill(self.cor_azul_cueca)
+    
+    def fazerPergunta(self, pergunta):
+        pass 
