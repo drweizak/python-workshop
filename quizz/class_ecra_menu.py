@@ -1,6 +1,7 @@
 import pygame
 import pygame_widgets
 from pygame_widgets.button import Button
+from .class_cores import Cores as cor
 
 
 class Menu():
@@ -16,14 +17,6 @@ class Menu():
         # Obter Centro do ecra
         self.centro_ecra = self.jogo.ecra.get_rect().center
 
-        # Definir cores
-        self.cor_cinzento_cueca = (246, 246, 246)
-        self.cor_azul_cueca = (153, 204, 255)
-        self.cor_azul_escuro_cueca = (184, 196, 209)
-        self.cor_vermelho_cueca = (203, 66, 84)
-        self.cor_verde_cueca = (69, 132, 69)
-        self.preto_cueca = (0, 0, 0)
-
         self.butaoJogar = Button(
             self.jogo.ecra,
             self.centro_ecra[0] - (240 / 2),
@@ -33,10 +26,10 @@ class Menu():
             text="Jogar",
             fontSize=40,  # Size of font
             margin=20,  # Minimum distance between text/image and edge of button
-            inactiveColour=self.cor_cinzento_cueca,  # Colour of button when not being interacted with
+            inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
             # Colour of button when being hovered over
-            hoverColour=self.cor_azul_escuro_cueca,
-            pressedColour=self.cor_azul_escuro_cueca,  # Colour of button when being clicked
+            hoverColour=cor().azul_escuro_cueca,
+            pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
             onClick=self.navegarJogar  # Function to call when clicked on
         )
         self.butaoGerarPerguntas = Button(
@@ -48,10 +41,10 @@ class Menu():
             text="Gerar Perguntas",
             fontSize=40,  # Size of font
             margin=20,  # Minimum distance between text/image and edge of button
-            inactiveColour=self.cor_cinzento_cueca,  # Colour of button when not being interacted with
+            inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
             # Colour of button when being hovered over
-            hoverColour=self.cor_azul_escuro_cueca,
-            pressedColour=self.cor_azul_escuro_cueca,  # Colour of button when being clicked
+            hoverColour=cor().azul_escuro_cueca,
+            pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
             onClick=self.navegarPerguntas  # Function to call when clicked on
         )
         self.butaoPontuacoes = Button(
@@ -63,9 +56,9 @@ class Menu():
             text="Pontuações",
             fontSize=40,  # Size of font
             margin=20,  # Minimum distance between text/image and edge of button
-            inactiveColour=self.cor_cinzento_cueca,  # Colour of button when not being interacted with
-            hoverColour=self.cor_azul_escuro_cueca, # Colour of button when being hovered over
-            pressedColour=self.cor_azul_escuro_cueca,  # Colour of button when being clicked
+            inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
+            hoverColour=cor().azul_escuro_cueca, # Colour of button when being hovered over
+            pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
             onClick=self.navegarPontuacoes  # Function to call when clicked on
         )
         self.butaoTerminarSessao = Button(
@@ -77,9 +70,9 @@ class Menu():
             text="Terminar Sessão",
             fontSize=40,  # Size of font
             margin=20,  # Minimum distance between text/image and edge of button
-            inactiveColour=self.cor_cinzento_cueca,  # Colour of button when not being interacted with
-            hoverColour=self.cor_azul_escuro_cueca, # Colour of button when being hovered over
-            pressedColour=self.cor_azul_escuro_cueca,  # Colour of button when being clicked
+            inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
+            hoverColour=cor().azul_escuro_cueca, # Colour of button when being hovered over
+            pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
             onClick=self.terminarSessao  # Function to call when clicked on
         )
 
@@ -92,13 +85,13 @@ class Menu():
 
 
         # Definir cor de fundo
-        self.jogo.ecra.fill(self.cor_azul_cueca)
+        self.jogo.ecra.fill(cor().azul_cueca)
 
         # Definir texto
         textoTitulo = titulo_fonte.render(
-            self.jogo.titulo, True, self.cor_vermelho_cueca)
+            self.jogo.titulo, True, cor().vermelho_cueca)
         textoNomeUtilizador = menu_fonte.render(
-            self.jogo.nome_utilizador, True, self.cor_verde_cueca)
+            self.jogo.nome_utilizador, True, cor().verde_cueca)
 
 
         # Inserir text

@@ -1,5 +1,4 @@
 import pygame
-import pygame_widgets
 from quizz.class_ecra_menu import Menu
 from quizz.class_ecra_jogar import Jogar
 from quizz.class_ecra_login import Login
@@ -20,12 +19,14 @@ class Jogo:
         "nivelJogo": Menu,
     }
     nome_utilizador = None
+    centro_ecra = None
 
     def __init__(self):
         pygame.font.init()
         pygame.display.set_caption(self.titulo)
         self.relogio = pygame.time.Clock()
         self.ecra = pygame.display.set_mode(self.tamanho_ecra)
+        self.centro_ecra = self.ecra.get_rect().center
         self.estado = self.ecras["login"](self)
 
         self.construir()

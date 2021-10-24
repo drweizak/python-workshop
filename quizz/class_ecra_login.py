@@ -2,16 +2,9 @@ import pygame_widgets
 from pygame_widgets.textbox import TextBox
 from pygame_widgets.button import Button
 import pygame
+from .class_cores import Cores as cor
 
 class Login() :
-
-    cor_cinzento_cueca = (246, 246, 246)
-    cor_azul_cueca = (153, 204, 255)
-    cor_azul_escuro_cueca = (184, 196, 209)
-    cor_vermelho_cueca = (203, 66, 84)
-    cor_laranja_cueca = (205, 131, 67)
-    preto_cueca = (0, 0, 0)
-    branco_cueca = (255, 255, 255)
 
     jogo = None
     caixaTexto = None
@@ -30,9 +23,9 @@ class Login() :
             550,
             80, 
             fontSize=50,
-            colour=self.branco_cueca,
-            borderColour=self.cor_vermelho_cueca,
-            textColour=self.preto_cueca,
+            colour=cor().branco_cueca,
+            borderColour=cor().vermelho_cueca,
+            textColour=cor().preto_cueca,
             onSubmit=self.output,
             radius=10, 
             borderThickness=5,
@@ -47,10 +40,10 @@ class Login() :
             text="Iniciar",
             fontSize=40,  # Size of font
             margin=20,  # Minimum distance between text/image and edge of button
-            inactiveColour=self.cor_cinzento_cueca,  # Colour of button when not being interacted with
+            inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
             # Colour of button when being hovered over
-            hoverColour=self.cor_azul_escuro_cueca,
-            pressedColour=self.cor_azul_escuro_cueca,  # Colour of button when being clicked
+            hoverColour=cor().azul_escuro_cueca,
+            pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
             onClick=self.output # Function to call when clicked on)
         )
 
@@ -66,19 +59,19 @@ class Login() :
     def construir(self, jogo):
         self.jogo = jogo
 
-        self.jogo.ecra.fill(self.cor_azul_cueca)
+        self.jogo.ecra.fill(cor().azul_cueca)
 
         titulo_fonte = pygame.font.SysFont("arial", 48, bold=True, italic=False)
         mensagemErro_fonte = pygame.font.SysFont("arial", 30, bold=False, italic=False)
 
         textoTitulo = titulo_fonte.render("Insira aqui o seu nome", 
-            True, self.cor_vermelho_cueca)
+            True, cor().vermelho_cueca)
         self.jogo.ecra.blit(
             textoTitulo, (textoTitulo.get_rect(center=self.centro_ecra)[0], 180))
             
         if self.mensagem_erro:
             textoMensagemErro = mensagemErro_fonte.render(self.mensagem_erro, 
-                True, self.cor_laranja_cueca)
+                True, cor().laranja_cueca)
             self.jogo.ecra.blit(
                 textoMensagemErro, (textoMensagemErro.get_rect(center=self.centro_ecra)[0], 385))
  

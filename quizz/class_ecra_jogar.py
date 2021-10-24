@@ -1,39 +1,94 @@
+import random
 import pygame
+import pygame_widgets
+from pygame_widgets.button import Button
 from .quizz import gerarPerguntas
+from .class_cores import Cores as cor
+from .components.textWrap import wrapline
 
 class Jogar():
 
     jogo = None
-    total_perguntas = 5
+    total_perguntas = 20
     respostas_corretas = 0
     pontuacao = 0
     perguntas = []
     posicao_pergunta = 0
     initial_render = True
+    # criar lista de botes
 
     def __init__(self, jogo):
         self.jogo = jogo
         
-        # Definir cores
-        self.cor_cinzento_cueca = (246, 246, 246)
-        self.cor_azul_cueca = (153, 204, 255)
-        self.cor_azul_escuro_cueca = (184, 196, 209)
-        self.cor_vermelho_cueca = (203, 66, 84)
-        self.cor_verde_cueca = (69, 132, 69)
-        self.preto_cueca = (0, 0, 0)
-        
-
     def construir(self, jogo):
         self.jogo = jogo
 
         if self.initial_render:
             self.perguntas = gerarPerguntas(self.total_perguntas)
+            for i in range(len(self.perguntas)):
+                random.shuffle(self.perguntas[i]["opcoes"])
             self.initial_render = False
-            print(self.perguntas)
             #Mudar para True quando volta ao menu!!!!
         
+        self.jogo.ecra.fill(cor().azul_cueca)
+        #contador de perguntas / Progresso
+        #nome do utilizador
         self.fazerPergunta(self.perguntas[self.posicao_pergunta])
-        self.jogo.ecra.fill(self.cor_azul_cueca)
+        pygame_widgets.update(self.jogo.eventos)
+        
     
     def fazerPergunta(self, pergunta):
-        pass 
+        pergunta_fonte = pygame.font.SysFont("arial", 32, bold=True, italic=False)
+
+        questao = wrapline(pergunta["questao"], pergunta_fonte, 600)
+        y_pos=130
+        
+        for linha in questao:
+            textoPergunta = pergunta_fonte.render(linha, 
+                True, cor().vermelho_cueca)
+            self.jogo.ecra.blit(
+                textoPergunta, (textoPergunta.get_rect(center=self.jogo.centro_ecra)[0], y_pos))
+            y_pos += 38
+
+        self.imprimirOpcoes(pergunta["opcoes"], y_pos)
+
+    def imprimirOpcoes(self, respostas, y_pos):
+        
+        pergunta_fonte = pygame.font.SysFont("arial", 28, bold=True, italic=False)
+        y_pos += 60
+        for i in range(len(respostas)):
+            opcao = respostas[i]
+
+            Button(
+                self.jogo.ecra,
+                84,
+                y_pos,
+                100,
+                50,
+                text=chr(i+65),
+                fontSize=40,  # Size of font
+                margin=20,  # Minimum distance between text/image and edge of button
+                inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
+                # Colour of button when being hovered over
+                hoverColour=cor().azul_escuro_cueca,
+                pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
+                onClick=self.escolherOpcao # Function to call when clicked on)
+            )
+
+            #ButtonLista.append - para apagar no fim de cada pergunta
+
+            textoOpcao = pergunta_fonte.render(opcao, 
+                True, cor().preto_cueca)
+            self.jogo.ecra.blit(
+                textoOpcao, (84+100+20, y_pos + 11))
+            y_pos += 75 
+    
+    def escolherOpcao(self):
+        self.posicao_pergunta = self.posicao_pergunta + 1
+        # Remove de todos os Button associados a lista
+        pass
+
+
+
+        
+
