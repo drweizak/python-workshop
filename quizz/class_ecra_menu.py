@@ -81,7 +81,7 @@ class Menu():
 
         titulo_fonte = pygame.font.SysFont(
             "arial", 80, bold=True, italic=False)
-        menu_fonte = pygame.font.SysFont("arial", 40, bold=True, italic=False)
+        menu_fonte = pygame.font.SysFont("arial", 24, bold=True, italic=False)
 
 
         # Definir cor de fundo
