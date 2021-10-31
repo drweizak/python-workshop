@@ -15,7 +15,7 @@ class Jogar():
     perguntas = []
     posicao_pergunta = 0
     initial_render = True
-    # criar lista de botes
+    botoes = []
 
     def __init__(self, jogo):
         self.jogo = jogo
@@ -57,25 +57,25 @@ class Jogar():
         pergunta_fonte = pygame.font.SysFont("arial", 28, bold=True, italic=False)
         y_pos += 60
         for i in range(len(respostas)):
-            opcao = respostas[i]
+            opcao = respostas[i]            
 
-            Button(
-                self.jogo.ecra,
-                84,
-                y_pos,
-                100,
-                50,
-                text=chr(i+65),
-                fontSize=40,  # Size of font
-                margin=20,  # Minimum distance between text/image and edge of button
-                inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
-                # Colour of button when being hovered over
-                hoverColour=cor().azul_escuro_cueca,
-                pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
-                onClick=self.escolherOpcao # Function to call when clicked on)
-            )
-
-            #ButtonLista.append - para apagar no fim de cada pergunta
+            butt = Button(
+                    self.jogo.ecra,
+                    84,
+                    y_pos,
+                    100,
+                    50,
+                    text=chr(i+65),
+                    fontSize=40,  # Size of font
+                    margin=20,  # Minimum distance between text/image and edge of button
+                    inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
+                    # Colour of button when being hovered over
+                    hoverColour=cor().azul_escuro_cueca,
+                    pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
+                    onClick = lambda: self.escolherOpcao(respostas[i]) # Function to call when clicked on)
+                )
+            
+            self.botoes.append(butt)
 
             textoOpcao = pergunta_fonte.render(opcao, 
                 True, cor().preto_cueca)
@@ -83,12 +83,24 @@ class Jogar():
                 textoOpcao, (84+100+20, y_pos + 11))
             y_pos += 75 
     
-    def escolherOpcao(self):
+    def escolherOpcao(self, resposta):
+        for botao in self.botoes:
+            pygame_widgets.WidgetHandler().getWidgets().remove(botao)
+        self.botoes.clear()
+
+        self.validarResposta(self.perguntas[self.posicao_pergunta], resposta)  
+
         self.posicao_pergunta = self.posicao_pergunta + 1
-        # Remove de todos os Button associados a lista
-        pass
 
 
+    def validarResposta(self, pergunta, resposta):
+        print(resposta)
+        if resposta == pergunta["respostaCerta"]:
+            self.pontuacao += 1
+            self.respostas_corretas += 1
 
+            print("Correcta")
+        else:
+            print("Errada")
         
 
