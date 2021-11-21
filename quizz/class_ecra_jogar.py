@@ -56,11 +56,11 @@ class Jogar():
         pygame_widgets.update(self.jogo.eventos)
 
         if self.validar_resposta == True:
+            self.validar_resposta = False
             # Esperar
             pygame.time.delay(2000)
             # Limpar a mensagem
             self.mensagem = ''
-            self.validar_resposta = False
             self.posicao_pergunta = self.posicao_pergunta + 1
         
     
