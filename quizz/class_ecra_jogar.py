@@ -9,7 +9,7 @@ from .components.textWrap import wrapline
 class Jogar():
 
     jogo = None
-    total_perguntas = 20
+    total_perguntas = 3
     respostas_corretas = 0
     pontuacao = 0
     perguntas = []
@@ -115,14 +115,19 @@ class Jogar():
         
     def finalizar_pergunta(self):
         # Esperar
-        pygame.time.delay(3000)
+        pygame.time.delay(2500)
         # Limpar a mensagem
         self.mensagem_visivel = False
         self.validar_resposta = None
-        self.posicao_pergunta = self.posicao_pergunta + 1
+        
+        if self.posicao_pergunta + 1 <= self.total_perguntas - 1:
+            self.posicao_pergunta = self.posicao_pergunta + 1
+        else:
+            self.fimDoJogo = True
+        
         for botao in self.botoes:
             pygame_widgets.WidgetHandler().getWidgets().remove(botao)
-            self.botoes.clear()
+        self.botoes.clear()
                 
     def mensagem(self, y_pos):
         # Render da mensagem
