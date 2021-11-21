@@ -16,8 +16,8 @@ class Jogar():
     posicao_pergunta = 0
     initial_render = True
     botoes = []
-    mensagem = ''
-    validar_resposta = False
+    validar_resposta = None
+    mensagem_visivel = False
 
     def __init__(self, jogo):
         self.jogo = jogo
@@ -46,23 +46,15 @@ class Jogar():
 
         #contador de perguntas / Progresso
         y_pos = self.fazerPergunta(self.perguntas[self.posicao_pergunta])
-        # Render da mensagem
-        mensagem_fonte = pygame.font.SysFont("arial", 24, bold=True, italic=False)
-        textoMensagem = mensagem_fonte.render(
-            self.mensagem, True, cor().verde_cueca)
-        self.jogo.ecra.blit(
-            textoMensagem, (textoMensagem.get_rect(center=self.jogo.centro_ecra)[0], y_pos))
         
+        if self.mensagem_visivel == True:
+            self.finalizar_pergunta()
+            
+        if self.validar_resposta != None:
+            self.mensagem(y_pos)
+               
         pygame_widgets.update(self.jogo.eventos)
 
-        if self.validar_resposta == True:
-            self.validar_resposta = False
-            # Esperar
-            pygame.time.delay(2000)
-            # Limpar a mensagem
-            self.mensagem = ''
-            self.posicao_pergunta = self.posicao_pergunta + 1
-        
     
     def fazerPergunta(self, pergunta):
         pergunta_fonte = pygame.font.SysFont("arial", 32, bold=True, italic=False)
@@ -114,21 +106,35 @@ class Jogar():
         return y_pos
     
     def validarResposta(self, pergunta, resposta):
-        for botao in self.botoes:
-            pygame_widgets.WidgetHandler().getWidgets().remove(botao)
-        self.botoes.clear()
-
         if resposta == pergunta["respostaCerta"]:
             self.pontuacao += 1
             self.respostas_corretas += 1
-            
-            # Associar mensagem a uma variavel
-            self.mensagem = "Resposta correcta"
+            self.validar_resposta = True
         else:
-            # Associar mensagem a uma variavel
-            self.mensagem = "Resposta errada"
+            self.validar_resposta = False
         
-        self.validar_resposta = True
-
-        
+    def finalizar_pergunta(self):
+        # Esperar
+        pygame.time.delay(3000)
+        # Limpar a mensagem
+        self.mensagem_visivel = False
+        self.validar_resposta = None
+        self.posicao_pergunta = self.posicao_pergunta + 1
+        for botao in self.botoes:
+            pygame_widgets.WidgetHandler().getWidgets().remove(botao)
+            self.botoes.clear()
+                
+    def mensagem(self, y_pos):
+        # Render da mensagem
+        mensagem_fonte = pygame.font.SysFont("arial", 24, bold=True, italic=False)
+        textoMensagem = mensagem_fonte.render(
+            ("Resposta correcta"  if self.validar_resposta == True else "Resposta errada" ),
+            True,
+            (cor().verde_cueca if self.validar_resposta == True else cor().vermelho_cueca)
+        )
+                
+        self.jogo.ecra.blit(
+            textoMensagem, (textoMensagem.get_rect(center=self.jogo.centro_ecra)[0], y_pos))
+            
+        self.mensagem_visivel = True        
 
