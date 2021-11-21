@@ -9,7 +9,7 @@ from .components.textWrap import wrapline
 class Jogar():
 
     jogo = None
-    total_perguntas = 3
+    total_perguntas = 20
     respostas_corretas = 0
     pontuacao = 0
     perguntas = []
@@ -18,6 +18,7 @@ class Jogar():
     botoes = []
     validar_resposta = None
     mensagem_visivel = False
+    fim_do_jogo = False
 
     def __init__(self, jogo):
         self.jogo = jogo
@@ -45,13 +46,20 @@ class Jogar():
             #Mudar para True quando volta ao menu!!!!
 
         #contador de perguntas / Progresso
-        y_pos = self.fazerPergunta(self.perguntas[self.posicao_pergunta])
-        
-        if self.mensagem_visivel == True:
-            self.finalizar_pergunta()
+        if self.fim_do_jogo == False:
+            y_pos = self.fazerPergunta(self.perguntas[self.posicao_pergunta])
             
-        if self.validar_resposta != None:
-            self.mensagem(y_pos)
+            if self.mensagem_visivel == True:
+                self.finalizar_pergunta()
+                
+            if self.validar_resposta != None:
+                self.mensagem(y_pos)
+        else:
+            # Guardar resultado na base de dados
+            # Apresentar pontuacao final
+            # Avaliar a burrice (baseado na pontuacao final)
+            # Render de 2 botoes (voltar ao menu, nova partida)
+            pass
                
         pygame_widgets.update(self.jogo.eventos)
 
@@ -120,10 +128,9 @@ class Jogar():
         self.mensagem_visivel = False
         self.validar_resposta = None
         
-        if self.posicao_pergunta + 1 <= self.total_perguntas - 1:
-            self.posicao_pergunta = self.posicao_pergunta + 1
-        else:
-            self.fimDoJogo = True
+        self.fim_do_jogo = True if self.posicao_pergunta == self.total_perguntas - 1 else False
+        if not self.fim_do_jogo:
+            self.posicao_pergunta += 1
         
         for botao in self.botoes:
             pygame_widgets.WidgetHandler().getWidgets().remove(botao)
