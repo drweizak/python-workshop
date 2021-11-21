@@ -16,7 +16,8 @@ class Jogar():
     posicao_pergunta = 0
     initial_render = True
     botoes = []
-    # Criar uma variavel string para guardar mensagem
+    mensagem = ''
+    validar_resposta = False
 
     def __init__(self, jogo):
         self.jogo = jogo
@@ -44,9 +45,23 @@ class Jogar():
             #Mudar para True quando volta ao menu!!!!
 
         #contador de perguntas / Progresso
-        self.fazerPergunta(self.perguntas[self.posicao_pergunta])
+        y_pos = self.fazerPergunta(self.perguntas[self.posicao_pergunta])
         # Render da mensagem
+        mensagem_fonte = pygame.font.SysFont("arial", 24, bold=True, italic=False)
+        textoMensagem = mensagem_fonte.render(
+            self.mensagem, True, cor().verde_cueca)
+        self.jogo.ecra.blit(
+            textoMensagem, (textoMensagem.get_rect(center=self.jogo.centro_ecra)[0], y_pos))
+        
         pygame_widgets.update(self.jogo.eventos)
+
+        if self.validar_resposta == True:
+            # Esperar
+            pygame.time.delay(2000)
+            # Limpar a mensagem
+            self.mensagem = ''
+            self.validar_resposta = False
+            self.posicao_pergunta = self.posicao_pergunta + 1
         
     
     def fazerPergunta(self, pergunta):
@@ -62,7 +77,8 @@ class Jogar():
                 textoPergunta, (textoPergunta.get_rect(center=self.jogo.centro_ecra)[0], y_pos))
             y_pos += 38
 
-        self.imprimirOpcoes(pergunta["opcoes"], y_pos)
+        y_pos = self.imprimirOpcoes(pergunta["opcoes"], y_pos)
+        return y_pos
 
     def imprimirOpcoes(self, respostas, y_pos):
         
@@ -94,7 +110,8 @@ class Jogar():
                 True, cor().preto_cueca)
             self.jogo.ecra.blit(
                 textoOpcao, (84+100+20, y_pos + 11))
-            y_pos += 75 
+            y_pos += 75
+        return y_pos
     
     def validarResposta(self, pergunta, resposta):
         for botao in self.botoes:
@@ -104,17 +121,14 @@ class Jogar():
         if resposta == pergunta["respostaCerta"]:
             self.pontuacao += 1
             self.respostas_corretas += 1
-
+            
             # Associar mensagem a uma variavel
-            print("Correcta")
+            self.mensagem = "Resposta correcta"
         else:
             # Associar mensagem a uma variavel
-            print("Errada")
+            self.mensagem = "Resposta errada"
         
-        # Esperar
+        self.validar_resposta = True
 
-        # Limpar a mensagem
-
-        self.posicao_pergunta = self.posicao_pergunta + 1
         
 
