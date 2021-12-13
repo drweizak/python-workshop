@@ -2,23 +2,24 @@ import random
 import pygame
 import pygame_widgets
 from pygame_widgets.button import Button
-from .quizz import gerarPerguntas
+from .quizz import gerarPerguntas, guardarRegisto
 from .class_cores import Cores as cor
 from .components.textWrap import wrapline
 
 class Jogar():
 
     jogo = None
-    total_perguntas = 20
+    total_perguntas = 3
     respostas_corretas = 0
     pontuacao = 0
     perguntas = []
     posicao_pergunta = 0
-    initial_render = True
+    primeiro_render = True
     botoes = []
     validar_resposta = None
     mensagem_visivel = False
     fim_do_jogo = False
+    guardar = True
 
     def __init__(self, jogo):
         self.jogo = jogo
@@ -26,36 +27,30 @@ class Jogar():
     def construir(self, jogo):
         self.jogo = jogo
         self.jogo.ecra.fill(cor().azul_cueca)
-        #gerar texto: tipo Fonte, Cor e Posicao
-        menu_fonte = pygame.font.SysFont("arial", 24, bold=True, italic=False)
-        textoNomeUtilizador = menu_fonte.render(
-            self.jogo.nome_utilizador, True, cor().verde_cueca)
-        self.jogo.ecra.blit(
-            textoNomeUtilizador, (20, 15))
-            
-        textoPontuacao = menu_fonte.render(
-            str(self.pontuacao), True, cor().laranja_cueca)
-        self.jogo.ecra.blit(
-            textoPontuacao, (textoNomeUtilizador.get_width() + 80, 15))
+        self.info_jogo()
         
-        if self.initial_render:
+        if self.primeiro_render:
             self.perguntas = gerarPerguntas(self.total_perguntas)
             for i in range(len(self.perguntas)):
                 random.shuffle(self.perguntas[i]["opcoes"])
-            self.initial_render = False
+            self.primeiro_render = False
             #Mudar para True quando volta ao menu!!!!
 
-        #contador de perguntas / Progresso
         if self.fim_do_jogo == False:
             y_pos = self.fazerPergunta(self.perguntas[self.posicao_pergunta])
-            
+            self.barra_progresso()
+
             if self.mensagem_visivel == True:
                 self.finalizar_pergunta()
                 
             if self.validar_resposta != None:
                 self.mensagem(y_pos)
+            
         else:
-            # Guardar resultado na base de dados
+            if self.guardar == True :
+                guardarRegisto(self.jogo.nome_utilizador, self.pontuacao)
+                self.guardar = False
+
             # Apresentar pontuacao final
             # Avaliar a burrice (baseado na pontuacao final)
             # Render de 2 botoes (voltar ao menu, nova partida)
@@ -112,7 +107,31 @@ class Jogar():
                 textoOpcao, (84+100+20, y_pos + 11))
             y_pos += 75
         return y_pos
+
+    def info_jogo(self):
+        #gerar texto: tipo Fonte, Cor e Posicao
+        menu_fonte = pygame.font.SysFont("arial", 24, bold=True, italic=False)
+        textoNomeUtilizador = menu_fonte.render(
+            self.jogo.nome_utilizador, True, cor().verde_cueca)
+        self.jogo.ecra.blit(
+            textoNomeUtilizador, (20, 15))
+            
+        textoPontuacao = menu_fonte.render(
+            str(self.pontuacao), True, cor().laranja_cueca)
+        self.jogo.ecra.blit(
+            textoPontuacao, (textoNomeUtilizador.get_width() + 80, 15))
     
+    def barra_progresso(self):
+        menu_fonte = pygame.font.SysFont("arial", 24, bold=True, italic=False)
+        barra_incremento=self.jogo.tamanho_ecra[0]/self.total_perguntas
+        tamanho_barra=barra_incremento*(self.posicao_pergunta + 1)
+        pygame.draw.rect(self.jogo.ecra, cor().vermelho_cueca, pygame.Rect(0, 0, tamanho_barra, 10))
+
+        textoProgresso = menu_fonte.render(
+            str(self.posicao_pergunta+1) + "/" + str(self.total_perguntas), True, cor().vermelho_cueca)
+        self.jogo.ecra.blit(
+            textoProgresso, (self.jogo.tamanho_ecra[0] - textoProgresso.get_width() - 20, 15))
+
     def validarResposta(self, pergunta, resposta):
         if resposta == pergunta["respostaCerta"]:
             self.pontuacao += 1
