@@ -28,8 +28,8 @@ class Menu():
             margin=20,  # Minimum distance between text/image and edge of button
             inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
             # Colour of button when being hovered over
-            hoverColour=cor().azul_escuro_cueca,
-            pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
+            hoverColour=cor().cinzento_escuro_cueca,
+            pressedColour=cor().cinzento_escuro_cueca,  # Colour of button when being clicked
             onClick=self.navegarJogar  # Function to call when clicked on
         )
         self.butaoGerarPerguntas = Button(
@@ -43,8 +43,8 @@ class Menu():
             margin=20,  # Minimum distance between text/image and edge of button
             inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
             # Colour of button when being hovered over
-            hoverColour=cor().azul_escuro_cueca,
-            pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
+            hoverColour=cor().cinzento_escuro_cueca,
+            pressedColour=cor().cinzento_escuro_cueca,  # Colour of button when being clicked
             onClick=self.navegarPerguntas  # Function to call when clicked on
         )
         self.butaoPontuacoes = Button(
@@ -57,8 +57,8 @@ class Menu():
             fontSize=40,  # Size of font
             margin=20,  # Minimum distance between text/image and edge of button
             inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
-            hoverColour=cor().azul_escuro_cueca, # Colour of button when being hovered over
-            pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
+            hoverColour=cor().cinzento_escuro_cueca, # Colour of button when being hovered over
+            pressedColour=cor().cinzento_escuro_cueca,  # Colour of button when being clicked
             onClick=self.navegarPontuacoes  # Function to call when clicked on
         )
         self.butaoTerminarSessao = Button(
@@ -71,8 +71,8 @@ class Menu():
             fontSize=40,  # Size of font
             margin=20,  # Minimum distance between text/image and edge of button
             inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
-            hoverColour=cor().azul_escuro_cueca, # Colour of button when being hovered over
-            pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
+            hoverColour=cor().cinzento_escuro_cueca, # Colour of button when being hovered over
+            pressedColour=cor().cinzento_escuro_cueca,  # Colour of button when being clicked
             onClick=self.terminarSessao  # Function to call when clicked on
         )
 

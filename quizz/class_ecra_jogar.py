@@ -2,7 +2,7 @@ import random
 import pygame
 import pygame_widgets
 from pygame_widgets.button import Button
-from .quizz import gerarPerguntas, guardarRegisto
+from .quizz import gerarPerguntas, guardarRegisto, avaliarPontuacao
 from .class_cores import Cores as cor
 from .components.textWrap import wrapline
 
@@ -27,7 +27,6 @@ class Jogar():
     def construir(self, jogo):
         self.jogo = jogo
         self.jogo.ecra.fill(cor().azul_cueca)
-        self.info_jogo()
         
         if self.primeiro_render:
             self.perguntas = gerarPerguntas(self.total_perguntas)
@@ -37,6 +36,7 @@ class Jogar():
             #Mudar para True quando volta ao menu!!!!
 
         if self.fim_do_jogo == False:
+            self.info_jogo()
             y_pos = self.fazerPergunta(self.perguntas[self.posicao_pergunta])
             self.barra_progresso()
 
@@ -50,10 +50,35 @@ class Jogar():
             if self.guardar == True :
                 guardarRegisto(self.jogo.nome_utilizador, self.pontuacao)
                 self.guardar = False
+            
+            mensagem, cor_pontuacao = avaliarPontuacao(self.jogo.nome_utilizador, self.pontuacao, self.total_perguntas)
+            
+            fim_do_jogo_fonte = pygame.font.SysFont("arial", 40, bold=True, italic=False)           
+            fim_do_jogo_texto = fim_do_jogo_fonte.render("FIM DO JOGO!", 
+                True, cor().preto_cueca)
+            self.jogo.ecra.blit(
+                fim_do_jogo_texto, (fim_do_jogo_texto.get_rect(center=self.jogo.centro_ecra)[0], 200))
+            
+            pontuacao_fonte = pygame.font.SysFont("arial", 40, bold=True, italic=False)           
+            pontuacao_texto = pontuacao_fonte.render("Conseguiste " + str(self.pontuacao) + " Pontos", 
+                True, cor_pontuacao)
+            self.jogo.ecra.blit(
+                pontuacao_texto, (pontuacao_texto.get_rect(center=self.jogo.centro_ecra)[0], 300))
 
-            # Apresentar pontuacao final
-            # Avaliar a burrice (baseado na pontuacao final)
+            mensagem_fonte = pygame.font.SysFont("arial", 35, bold=False, italic=False)           
+
+            lista_mensagem_avaliacao = wrapline(mensagem, pontuacao_fonte, 700)
+            y_pos=380
+            
+            for linha in lista_mensagem_avaliacao :
+                mensagem_avaliacao = mensagem_fonte.render(linha, 
+                    True, cor_pontuacao)
+                self.jogo.ecra.blit(
+                    mensagem_avaliacao, (mensagem_avaliacao.get_rect(center=self.jogo.centro_ecra)[0], y_pos))
+                y_pos += 41
+
             # Render de 2 botoes (voltar ao menu, nova partida)
+            # Otimizar estilos de texto
             pass
                
         pygame_widgets.update(self.jogo.eventos)
@@ -93,8 +118,8 @@ class Jogar():
                     margin=20,  # Minimum distance between text/image and edge of button
                     inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
                     # Colour of button when being hovered over
-                    hoverColour=cor().azul_escuro_cueca,
-                    pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
+                    hoverColour=cor().cinzento_escuro_cueca,
+                    pressedColour=cor().cinzento_escuro_cueca,  # Colour of button when being clicked
                     onClickParams=(self.perguntas[self.posicao_pergunta], opcao),
                     onClick=self.validarResposta, # Function to call when clicked on)
                 )

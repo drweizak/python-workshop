@@ -42,8 +42,8 @@ class Login() :
             margin=20,  # Minimum distance between text/image and edge of button
             inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
             # Colour of button when being hovered over
-            hoverColour=cor().azul_escuro_cueca,
-            pressedColour=cor().azul_escuro_cueca,  # Colour of button when being clicked
+            hoverColour=cor().cinzento_escuro_cueca,
+            pressedColour=cor().cinzento_escuro_cueca,  # Colour of button when being clicked
             onClick=self.output # Function to call when clicked on)
         )
 
