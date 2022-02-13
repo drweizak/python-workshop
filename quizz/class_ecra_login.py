@@ -8,7 +8,7 @@ class Login() :
 
     jogo = None
     caixaTexto = None
-    butao = None
+    botao = None
     mensagem_erro = None
 
     def __init__(self, jogo):
@@ -31,7 +31,7 @@ class Login() :
             borderThickness=5,
         )
 
-        self.butao = Button(
+        self.botao = Button(
             self.jogo.ecra,
             self.centro_ecra[0] - (240 / 2),
             430,
@@ -51,7 +51,7 @@ class Login() :
         if len(self.caixaTexto.getText())>2:
             self.jogo.nome_utilizador = self.caixaTexto.getText()
             pygame_widgets.WidgetHandler().getWidgets().remove(self.caixaTexto)
-            pygame_widgets.WidgetHandler().getWidgets().remove(self.butao)
+            pygame_widgets.WidgetHandler().getWidgets().remove(self.botao)
             self.jogo.estado = self.jogo.ecras["menu"](self.jogo)
         else:
             self.mensagem_erro = "Nome inválido: deve ter mais de 2 caracteres."

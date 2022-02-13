@@ -3,25 +3,35 @@ import pygame_widgets
 from pygame_widgets.button import Button
 from .class_cores import Cores as cor
 
-
 class Menu():
     jogo = None
-    butaoGerarPerguntas = None
-    butaoJogar = None
-    butaoPontuacoes = None
-    butaoTerminarSessao = None
+    botaoGerarPerguntas = None
+    botaoJogar = None
+    botaoPontuacoes = None
+    botaoTerminarSessao = None
 
     def __init__(self, jogo):
         self.jogo = jogo
+        
+        # Starting the mixer
+        pygame.mixer.init()
+        
+        # Loading the song
+        pygame.mixer.music.load("quizz/audios/commerical-break.mp3")
+        
+        # Setting the volume
+        pygame.mixer.music.set_volume(0.7)
+        
+        # Start playing the song
+        pygame.mixer.music.play()
 
-        # Obter Centro do ecra
-        self.centro_ecra = self.jogo.ecra.get_rect().center
-
-        self.butaoJogar = Button(
+        # mixer.music.pause() 
+        
+        self.botaoJogar = Button(
             self.jogo.ecra,
-            self.centro_ecra[0] - (240 / 2),
-            300,
-            240,
+            self.jogo.centro_ecra[0] - (260 / 2),
+            250,
+            260,
             75,
             text="Jogar",
             fontSize=40,  # Size of font
@@ -32,11 +42,11 @@ class Menu():
             pressedColour=cor().cinzento_escuro_cueca,  # Colour of button when being clicked
             onClick=self.navegarJogar  # Function to call when clicked on
         )
-        self.butaoGerarPerguntas = Button(
+        self.botaoGerarPerguntas = Button(
             self.jogo.ecra,
-            self.centro_ecra[0] - (240 / 2),
-            400,
-            240,
+            self.jogo.centro_ecra[0] - (260 / 2),
+            350,
+            260,
             75,
             text="Gerar Perguntas",
             fontSize=40,  # Size of font
@@ -47,11 +57,11 @@ class Menu():
             pressedColour=cor().cinzento_escuro_cueca,  # Colour of button when being clicked
             onClick=self.navegarPerguntas  # Function to call when clicked on
         )
-        self.butaoPontuacoes = Button(
+        self.botaoPontuacoes = Button(
             self.jogo.ecra,
-            self.centro_ecra[0] - (240 / 2),
-            500,
-            240,
+            self.jogo.centro_ecra[0] - (260 / 2),
+            450,
+            260,
             75,
             text="Pontuações",
             fontSize=40,  # Size of font
@@ -61,13 +71,13 @@ class Menu():
             pressedColour=cor().cinzento_escuro_cueca,  # Colour of button when being clicked
             onClick=self.navegarPontuacoes  # Function to call when clicked on
         )
-        self.butaoTerminarSessao = Button(
+        self.botaoTerminarSessao = Button(
             self.jogo.ecra,
-            self.centro_ecra[0] - (240 / 2),
-            600,
-            240,
+            self.jogo.centro_ecra[0] - (260 / 2),
+            550,
+            260,
             75,
-            text="Terminar Sessão",
+            text="Mudar Utilizador",
             fontSize=40,  # Size of font
             margin=20,  # Minimum distance between text/image and edge of button
             inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
@@ -76,6 +86,21 @@ class Menu():
             onClick=self.terminarSessao  # Function to call when clicked on
         )
 
+        self.botaoTerminarJogo = Button(
+            self.jogo.ecra,
+            self.jogo.centro_ecra[0] - (260 / 2),
+            650,
+            260,
+            75,
+            text="Sair do Jogo",
+            fontSize=40,  # Size of font
+            margin=20,  # Minimum distance between text/image and edge of button
+            inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
+            hoverColour=cor().cinzento_escuro_cueca, # Colour of button when being hovered over
+            pressedColour=cor().cinzento_escuro_cueca,  # Colour of button when being clicked
+            onClick=self.terminarJogo  # Function to call when clicked on
+        )
+        
     def construir(self, jogo):
         self.jogo = jogo
 
@@ -96,17 +121,18 @@ class Menu():
 
         # Inserir text
         self.jogo.ecra.blit(
-            textoTitulo, (textoTitulo.get_rect(center=self.centro_ecra)[0], 150))
+            textoTitulo, (textoTitulo.get_rect(center=self.jogo.centro_ecra)[0], 100))
         self.jogo.ecra.blit(
             textoNomeUtilizador, (20, 15))
 
         pygame_widgets.update(self.jogo.eventos)
 
     def removerWidget(self):
-        pygame_widgets.WidgetHandler().getWidgets().remove(self.butaoGerarPerguntas)
-        pygame_widgets.WidgetHandler().getWidgets().remove(self.butaoJogar)
-        pygame_widgets.WidgetHandler().getWidgets().remove(self.butaoPontuacoes)
-        pygame_widgets.WidgetHandler().getWidgets().remove(self.butaoTerminarSessao)
+        pygame_widgets.WidgetHandler().getWidgets().remove(self.botaoGerarPerguntas)
+        pygame_widgets.WidgetHandler().getWidgets().remove(self.botaoJogar)
+        pygame_widgets.WidgetHandler().getWidgets().remove(self.botaoPontuacoes)
+        pygame_widgets.WidgetHandler().getWidgets().remove(self.botaoTerminarSessao)
+        pygame_widgets.WidgetHandler().getWidgets().remove(self.botaoTerminarJogo)
 
     def navegarJogar(self):
         self.removerWidget()
@@ -125,4 +151,7 @@ class Menu():
         self.jogo.nome_utilizador = None
         self.jogo.estado = self.jogo.ecras["login"](self.jogo)
 
-
+    def terminarJogo(self):
+        self.removerWidget()
+        pygame.quit()
+        exit()

@@ -9,7 +9,7 @@ from .components.textWrap import wrapline
 class Jogar():
 
     jogo = None
-    total_perguntas = 3
+    total_perguntas = 1
     respostas_corretas = 0
     pontuacao = 0
     perguntas = []
@@ -77,10 +77,39 @@ class Jogar():
                     mensagem_avaliacao, (mensagem_avaliacao.get_rect(center=self.jogo.centro_ecra)[0], y_pos))
                 y_pos += 41
 
-            # Render de 2 botoes (voltar ao menu, nova partida)
-            # Otimizar estilos de texto
-            pass
-               
+            botaoNovaPartida = Button(
+                self.jogo.ecra,
+                self.jogo.centro_ecra[0] + 40,
+                y_pos+60,
+                240,
+                75,
+                text="Nova Partida",
+                fontSize=40,  # Size of font
+                margin=20,  # Minimum distance between text/image and edge of button
+                inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
+                hoverColour=cor().cinzento_escuro_cueca, # Colour of button when being hovered over
+                pressedColour=cor().cinzento_escuro_cueca,  # Colour of button when being clicked
+                onClick=self.novaPartida  # Function to call when clicked on
+                )
+            self.botoes.append(botaoNovaPartida)
+                        
+            botaoVoltarMenu = Button(
+                self.jogo.ecra,
+                self.jogo.centro_ecra[0] - 240 - 40,
+                y_pos+60,
+                240,
+                75,
+                text="Voltar ao Menu",
+                fontSize=40,  # Size of font
+                margin=20,  # Minimum distance between text/image and edge of button
+                inactiveColour=cor().cinzento_cueca,  # Colour of button when not being interacted with
+                hoverColour=cor().cinzento_escuro_cueca, # Colour of button when being hovered over
+                pressedColour=cor().cinzento_escuro_cueca,  # Colour of button when being clicked
+                onClick=self.voltarMenu  # Function to call when clicked on
+                )
+            
+            self.botoes.append(botaoVoltarMenu)
+            
         pygame_widgets.update(self.jogo.eventos)
 
     
@@ -194,3 +223,15 @@ class Jogar():
             
         self.mensagem_visivel = True        
 
+    def removerWidget(self):
+        for botao in self.botoes:
+            pygame_widgets.WidgetHandler().getWidgets().remove(botao)
+        self.botoes.clear()
+
+    def novaPartida(self):
+        self.removerWidget()
+        self.jogo.estado = self.jogo.ecras["jogar"](self.jogo)
+
+    def voltarMenu(self):
+        self.removerWidget()
+        self.jogo.estado = self.jogo.ecras["menu"](self.jogo)
