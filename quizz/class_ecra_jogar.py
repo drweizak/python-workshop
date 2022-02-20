@@ -29,7 +29,7 @@ class Jogar():
         self.jogo.ecra.fill(cor().azul_cueca)
         
         if self.primeiro_render:
-            self.perguntas = gerarPerguntas(self.total_perguntas)
+            self.perguntas = gerarPerguntas(self.total_perguntas, self.jogo.categorias_seleccionadas)
             for i in range(len(self.perguntas)):
                 random.shuffle(self.perguntas[i]["opcoes"])
             self.primeiro_render = False

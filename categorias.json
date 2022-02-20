@@ -1,0 +1,38 @@
+{
+    "1": {
+        "nome": "Ciências"
+    },
+    "2": {
+        "nome": "Natureza"
+    },
+    "3": {
+        "nome": "História"
+    },
+    "4": {
+        "nome": "Geografia"
+    },
+    "5": {
+        "nome": "Arte"
+    },
+    "6": {
+        "nome": "Literatura"
+    },
+    "7": {
+        "nome": "Desporto"
+    },
+    "8": {
+        "nome": "Lazer"
+    },
+    "9": {
+        "nome": "Entretenimento"
+    },
+    "10": {
+        "nome": "Programação"
+    },
+    "11": {
+        "nome": "Jogos"
+    },
+    "12": {
+        "nome": "Python"
+    }
+}

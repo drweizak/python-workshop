@@ -3,15 +3,31 @@ import random
 import json
 from datetime import datetime
 from .class_cores import Cores as cor
-
-def gerarPerguntas(total_perguntas):
+  
+def gerarPerguntas(total_perguntas, categoriasEscolhidas):
+   
     # Ler Json
+    with open("categorias.json", "r") as ficheiro:
+        categorias = json.loads(ficheiro.read())
+        
     with open("perguntas.json", "r") as ficheiro:
         perguntas = json.loads(ficheiro.read())
 
-    random.shuffle(perguntas)
+    random.shuffle(perguntas)    
+    
+    if len(categoriasEscolhidas) > 0:
+        # Filtrar perguntas
+        perguntas = list(filter(lambda p: filtrarPorCategorias(p, categoriasEscolhidas), perguntas))
+    
+    return perguntas[:total_perguntas] 
 
-    return perguntas[:total_perguntas]
+def filtrarPorCategorias(pergunta, categoriasEscolhidas):
+    
+    for categoria in categoriasEscolhidas:
+        if categoria in pergunta['categorias']:
+            return True
+
+    return False
 
 def guardarRegisto(nome_utilizador, pontuacao):
     # Ler Json

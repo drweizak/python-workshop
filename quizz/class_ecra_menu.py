@@ -13,19 +13,19 @@ class Menu():
     def __init__(self, jogo):
         self.jogo = jogo
         
-        # Starting the mixer
-        pygame.mixer.init()
+        # # Starting the mixer
+        # pygame.mixer.init()
         
-        # Loading the song
-        pygame.mixer.music.load("quizz/audios/commerical-break.mp3")
+        # # Loading the song
+        # pygame.mixer.music.load("quizz/audios/commerical-break.mp3")
         
-        # Setting the volume
-        pygame.mixer.music.set_volume(0.7)
+        # # Setting the volume
+        # pygame.mixer.music.set_volume(0.7)
         
-        # Start playing the song
-        pygame.mixer.music.play()
+        # # Start playing the song
+        # pygame.mixer.music.play()
 
-        # mixer.music.pause() 
+        # # mixer.music.pause() 
         
         self.botaoJogar = Button(
             self.jogo.ecra,

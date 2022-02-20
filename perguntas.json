@@ -9,6 +9,8 @@
             "Ramos",
             "Raiz"
         ],
+        "categorias": [1, 2],
+        "nivel": 1,
         "id": 1
     },
     {
@@ -21,6 +23,8 @@
             "1555-1580",
             "1467-1509"
         ],
+        "categorias": [1],
+        "nivel": 1,
         "id": 2
     },
     {
@@ -33,6 +37,8 @@
             "3001",
             "2001"
         ],
+        "categorias": [2],
+        "nivel": 1,
         "id": 3
     },
     {
@@ -45,6 +51,8 @@
             "20,000,000 AC",
             "10,000 AC"
         ],
+        "categorias": [2],
+        "nivel": 1,
         "id": 4
     },
     {
@@ -57,6 +65,8 @@
             "Magnitude de momento",
             "Terramoto"
         ],
+        "categorias": [2],
+        "nivel": 1,
         "id": 5
     },
     {
@@ -69,6 +79,8 @@
             "Heliosfera",
             "Gal\u00e1xia"
         ],
+        "categorias": [2],
+        "nivel": 1,
         "id": 6
     },
     {
@@ -81,6 +93,8 @@
             "Ela a Feiticeira",
             "Um conto de duas cidades"
         ],
+        "categorias": [3],
+        "nivel": 1,
         "id": 7
     },
     {
@@ -93,6 +107,8 @@
             "Burkina Faso",
             "Su\u00ed\u00e7a"
         ],
+        "categorias": [2],
+        "nivel": 1,
         "id": 8
     },
     {
@@ -105,6 +121,8 @@
             "Out of Line",
             "Ugo Volt"
         ],
+        "categorias": [2],
+        "nivel": 1,
         "id": 9
     },
     {
@@ -117,6 +135,8 @@
             "2021",
             "XXXX"
         ],
+        "categorias": [2],
+        "nivel": 1,
         "id": 10
     },
     {
@@ -129,6 +149,8 @@
             "Fahrenheit",
             "Kevin"
         ],
+        "categorias": [2],
+        "nivel": 1,
         "id": 11
     },
     {
@@ -141,6 +163,8 @@
             "3021",
             "1812"
         ],
+        "categorias": [2],
+        "nivel": 1,
         "id": 12
     },
     {
@@ -153,6 +177,8 @@
             "Ronaldo Schwarzenegger",
             "Arhold Schwerzedder"
         ],
-        "respostaCerta": "Arnold Schwarzenegger"
+        "respostaCerta": "Arnold Schwarzenegger",
+        "categorias": [2],
+        "nivel": 1
     }
 ]

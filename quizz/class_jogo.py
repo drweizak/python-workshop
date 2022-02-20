@@ -19,6 +19,7 @@ class Jogo:
         "nivelJogo": Menu,
     }
     nome_utilizador = None
+    categorias_seleccionadas = []
     centro_ecra = None
 
     def __init__(self):
